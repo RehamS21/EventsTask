@@ -29,9 +29,9 @@ public class EventsService {
     public void addEvent(Events events){
         if(events.getDate().isBefore(LocalDate.now()))
             throw new ApiException("Can't added this event since date in the past");
-        else if (events.getEndTime().isBefore(LocalTime.now())) {
-            throw new ApiException("Can't added this event since date in the past");
-        }
+//        else if (events.getEndTime().isBefore(LocalTime.now())) {
+//            throw new ApiException("Can't added this event since date in the past");
+//        }
         eventsRepositry.save(events);
     }
 
