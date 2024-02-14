@@ -20,9 +20,9 @@ public class EventsController {
        return eventsService.getAllEvents();
     }
 
-    @GetMapping("/get/{id}")
-    public Events getEventsByIdController(@PathVariable Integer id){
-        return eventsService.getEventByIdService(id);
+    @GetMapping("/get/{event_id}")
+    public Events getEventsByIdController(@PathVariable Integer event_id){
+        return eventsService.getEventByIdService(event_id);
     }
     @PostMapping("/add")
     public ResponseEntity addEventsController(@RequestBody @Valid Events events){

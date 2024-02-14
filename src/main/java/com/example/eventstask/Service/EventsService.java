@@ -27,11 +27,11 @@ public class EventsService {
     }
 
     public void addEvent(Events events){
-        if(events.getDate().isBefore(LocalDate.now()))
+        if(events.getDate().isBefore(LocalDate.now())) // an event should not be created on the past
             throw new ApiException("Can't added this event since date in the past");
-//        else if (events.getEndTime().isBefore(LocalTime.now())) {
-//            throw new ApiException("Can't added this event since date in the past");
-//        }
+        else if (events.getDate().isEqual(LocalDate.now()) && events.getStartTime().isBefore(LocalTime.now())) {
+            throw new ApiException("Can't added this event since date in the past");
+        }
         eventsRepositry.save(events);
     }
 
@@ -57,6 +57,8 @@ public class EventsService {
 
         if (deleteEvent == null)
             throw new ApiException("Event id is wrong");
+        deleteEvent.setUsers(null);
+        eventsRepositry.save(deleteEvent);
 
         eventsRepositry.delete(deleteEvent);
     }
